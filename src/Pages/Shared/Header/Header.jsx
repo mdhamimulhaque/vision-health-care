@@ -16,14 +16,15 @@ const Header = () => {
         },
         {
             id: 3,
-            name: "Services",
-            path: '/services'
-        },
-        {
-            id: 4,
             name: "Appointment",
             path: '/appointment'
         },
+        {
+            id: 4,
+            name: "Reviews",
+            path: '/reviews'
+        },
+
         {
             id: 5,
             name: "Contact Us",
