@@ -33,7 +33,7 @@ const Header = () => {
 
     const [open, setOpen] = useState(false)
     return (
-        <header className='px-2 py-2 lg:px-5 flex justify-between items-center z-10 bg-emerald-300'>
+        <header className='px-2 py-2 lg:px-5 flex justify-between items-center z-50 bg-emerald-300'>
             <div className="logo flex items-center text-white">
                 <img className='w-10' src={LOGO} alt="" />
                 <span className='ml-2 text-xl font-semibold '>Vision Health Center</span>
@@ -52,7 +52,7 @@ const Header = () => {
             <nav>
                 <ul
                     className={`lg:flex font-semibold absolute top-12 transition-all duration-500 right-0 lg:static bg-emerald-300 w-full text-center z-[-1]
-                 ${open ? "top-12" : "top-[-500px]"}`}>
+                 ${open ? "top-12 z-30" : "top-[-500px]"}`}>
                     {
                         navbarData?.map(navItem =>
                             <li
