@@ -1,5 +1,5 @@
 import React from 'react';
-import HomeDoctors from '../../HomeDoctors/HomeDoctors';
+import HomeDoctors from '../HomeDoctors/HomeDoctors';
 import GetAppointment from '../GetAppointment/GetAppointment';
 import HappyClientCounter from '../HappyClientCounter/HappyClientCounter';
 import HomeBanner from '../HomeBanner/HomeBanner';

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { HiMenu, HiX } from "react-icons/hi";
+import { Link } from 'react-router-dom';
 import LOGO from "../../../img/logo.png";
 
 const Header = () => {
@@ -7,7 +8,7 @@ const Header = () => {
         {
             id: 1,
             name: "Home",
-            path: '/home'
+            path: '/'
         },
         {
             id: 2,
@@ -59,7 +60,7 @@ const Header = () => {
                             <li
                                 key={navItem?.id}
                                 className='ml-4 text-white hover:text-emerald-500 transition-all duration-500 text-lg px-4 py-2 my-3'>
-                                <a href={navItem?.path}>{navItem?.name}</a>
+                                <Link to={navItem?.path}>{navItem?.name}</Link>
                             </li>
                         )
                     }
