@@ -1,98 +1,63 @@
-import React from 'react';
+import { format } from 'date-fns';
+import React, { useEffect, useState } from 'react';
+import BookingModal from '../../../components/BookingModal/BookingModal';
 import AppointmentCard from '../AppointmentCard/AppointmentCard';
 
-const AvailableAppoints = () => {
-    const appointmentData = [
-        {
-            id: 1,
-            serviceTitle: 'Cataract Surgery',
-            time: "8:00-9:00",
-            space: 10,
-            doctorName: "Alex Jhon Martin",
-            doctorTitle: 'Cataract & Lasik Consultant',
-            img: 'https://img.freepik.com/free-photo/african-american-medical-doctor-man-with-mask-isolated-gray-background_231208-2230.jpg?w=1380&t=st=1668369543~exp=1668370143~hmac=a8ba62640770e592e4739d42aab7850873e63ebec2dc84a2893cb3ac9b4e80d2'
+const AvailableAppoints = ({ selectedDate }) => {
 
-        },
-        {
-            id: 2,
-            serviceTitle: 'Cataract Surgery',
-            time: "8:00-9:00",
-            space: 10,
-            doctorName: "Alex Jhon Martin",
-            doctorTitle: 'Cataract & Lasik Consultant',
-            img: 'https://img.freepik.com/free-photo/african-american-medical-doctor-man-with-mask-isolated-gray-background_231208-2230.jpg?w=1380&t=st=1668369543~exp=1668370143~hmac=a8ba62640770e592e4739d42aab7850873e63ebec2dc84a2893cb3ac9b4e80d2'
+    const [appointmentData, setAppointmentData] = useState([]);
+    const [showMenu, setShowMenu] = useState(false);
+    const [modalData, setModalData] = useState(null)
 
-        },
-        {
-            id: 3,
-            serviceTitle: 'Cataract Surgery',
-            time: "8:00-9:00",
-            space: 10,
-            doctorName: "Alex Jhon Martin",
-            doctorTitle: 'Cataract & Lasik Consultant',
-            img: 'https://img.freepik.com/free-photo/african-american-medical-doctor-man-with-mask-isolated-gray-background_231208-2230.jpg?w=1380&t=st=1668369543~exp=1668370143~hmac=a8ba62640770e592e4739d42aab7850873e63ebec2dc84a2893cb3ac9b4e80d2'
+    useEffect(() => {
+        fetch(`appointmentData.json`)
+            .then(res => res.json())
+            .then(data => setAppointmentData(data))
+    }, [])
 
-        },
-        {
-            id: 4,
-            serviceTitle: 'Cataract Surgery',
-            time: "8:00-9:00",
-            space: 10,
-            doctorName: "Alex Jhon Martin",
-            doctorTitle: 'Cataract & Lasik Consultant',
-            img: 'https://img.freepik.com/free-photo/african-american-medical-doctor-man-with-mask-isolated-gray-background_231208-2230.jpg?w=1380&t=st=1668369543~exp=1668370143~hmac=a8ba62640770e592e4739d42aab7850873e63ebec2dc84a2893cb3ac9b4e80d2'
+    //    ---> modal handle open
+    const handleModalOpen = (e) => {
+        setShowMenu(!showMenu);
+        setModalData(e)
+    }
+    // ---> handle modal close
+    const handleModalClose = () => {
+        setShowMenu(!showMenu);
+        console.log('clicked')
+    }
 
-        },
-        {
-            id: 4,
-            serviceTitle: 'Cataract Surgery',
-            time: "8:00-9:00",
-            space: 10,
-            doctorName: "Alex Jhon Martin",
-            doctorTitle: 'Cataract & Lasik Consultant',
-            img: 'https://img.freepik.com/free-photo/african-american-medical-doctor-man-with-mask-isolated-gray-background_231208-2230.jpg?w=1380&t=st=1668369543~exp=1668370143~hmac=a8ba62640770e592e4739d42aab7850873e63ebec2dc84a2893cb3ac9b4e80d2'
-
-        },
-        {
-            id: 5,
-            serviceTitle: 'Cataract Surgery',
-            time: "8:00-9:00",
-            space: 10,
-            doctorName: "Alex Jhon Martin",
-            doctorTitle: 'Cataract & Lasik Consultant',
-            img: 'https://img.freepik.com/free-photo/african-american-medical-doctor-man-with-mask-isolated-gray-background_231208-2230.jpg?w=1380&t=st=1668369543~exp=1668370143~hmac=a8ba62640770e592e4739d42aab7850873e63ebec2dc84a2893cb3ac9b4e80d2'
-
-        },
-        {
-            id: 6,
-            serviceTitle: 'Cataract Surgery',
-            time: "8:00-9:00",
-            space: 10,
-            doctorName: "Alex Jhon Martin",
-            doctorTitle: 'Cataract & Lasik Consultant',
-            img: 'https://img.freepik.com/free-photo/african-american-medical-doctor-man-with-mask-isolated-gray-background_231208-2230.jpg?w=1380&t=st=1668369543~exp=1668370143~hmac=a8ba62640770e592e4739d42aab7850873e63ebec2dc84a2893cb3ac9b4e80d2'
-
-        }
-    ]
     return (
-        <section class="pt-20 lg:pt-[120px] pb-12 lg:pb-[90px]">
-            <div class="container mx-auto">
+        <section className="pt-20 pb-12 ">
+            <div className="container mx-auto">
                 <div className='text-center'>
                     <div className="title_box mt-4 lg:mt-0">
                         <span className='p-1 mb-2 bg-emerald-200 text-emerald-700'>Appointments</span>
                     </div>
-                    <h1 className="text-3xl text-center font-bold tracking-wide text-gray-800 dark:text-white lg:text-5xl mb-2">
-                        Available Appointments on<span className='underline decoration-emerald-400'> April 30, 2022</span>
+                    <h1 className="text-3xl text-center font-bold tracking-wide text-gray-800 dark:text-white lg:text-5xl mb-8">
+                        Available Appointments on<span className='underline decoration-emerald-400'> {format(selectedDate, 'PP')}</span>
                     </h1>
                 </div>
-                <div class="flex flex-wrap my-10">
-                    <AppointmentCard />
-                    <AppointmentCard />
-                    <AppointmentCard />
-                    <AppointmentCard />
-                    <AppointmentCard />
-                    <AppointmentCard />
+                <div className="flex flex-wrap my-10">
+                    {
+                        appointmentData.map(appointDta =>
+                            <AppointmentCard
+                                key={appointDta._id}
+                                appointDta={appointDta}
+                                handleModalOpen={handleModalOpen}
+                            />)
+                    }
                 </div>
+
+                {
+                    modalData &&
+                    <BookingModal
+                        handleModalClose={handleModalClose}
+                        showMenu={showMenu}
+                        modalData={modalData}
+                        selectedDate={selectedDate}
+                    />
+                }
+
             </div>
         </section>
     );
