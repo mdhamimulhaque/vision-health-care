@@ -1,14 +1,14 @@
 import { format } from 'date-fns';
 import React from 'react';
 
-const BookingModal = ({ handleModalClose, showMenu, modalData, selectedDate }) => {
+const BookingModal = ({ handleModalClose, modalData, selectedDate }) => {
     const { serviceTitle, doctorName, doctorTitle, img, slots } = modalData;
     return (
         <>
 
             <div className="relative flex justify-center items-center">
 
-                <div id="menu" className={showMenu ? 'w-full h-full bg-gray-900 bg-opacity-80 top-0 fixed sticky-0' : 'hidden'}>
+                <div id="menu" className={modalData ? 'w-full h-full bg-gray-900 bg-opacity-80 top-0 fixed sticky-0' : 'hidden'}>
                     <div className="2xl:container  2xl:mx-auto py-14 px-4 md:px-28 flex justify-center items-center">
                         <div className="w-96 md:w-auto  relative flex flex-col justify-center items-center bg-white py-16 px-4 md:px-24 xl:py-24 xl:px-36">
                             <div className="doctor_info_box text-center">

@@ -1,5 +1,5 @@
 import React from 'react';
-import PrimaryButton from '../../../components/PrimaryButton/PrimaryButton';
+
 
 const AppointmentCard = ({ appointDta, handleModalOpen }) => {
     const { serviceTitle, doctorName, doctorTitle, img, slots } = appointDta;
@@ -23,9 +23,16 @@ const AppointmentCard = ({ appointDta, handleModalOpen }) => {
                         </h4>
                         <p className="text-body-color">{slots.length > 0 ? slots[0] : "Try another day"}</p>
                         <p className="text-body-color">{slots.length} {slots.length > 1 ? "spaces" : "space"} Available</p>
-                        <div onClick={() => handleModalOpen(appointDta)}>
-                            <PrimaryButton >Book Appointment</PrimaryButton>
-                        </div>
+                        <button
+                            onClick={() => handleModalOpen(appointDta)}
+                            disabled={slots.length === 0}
+                            className={
+                                `mt-4 mb-2 inline-flex items-center justify-center rounded-md p-2.5 
+                                ${slots.length !== 0 ? "bg-emerald-400 hover:bg-emerald-500"
+                                    : "bg-red-400 text-gray-300"}  text-white`
+                            }>
+                            Book Appointment
+                        </button>
 
                     </div>
                 </div>

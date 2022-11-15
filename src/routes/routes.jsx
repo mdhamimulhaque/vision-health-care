@@ -7,6 +7,7 @@ import Login from "../Pages/Login/Login";
 import Reviews from "../Pages/Reviews/Reviews";
 import Appointment from "../Pages/Appointment/Appointment";
 import About from "../Pages/About/About";
+import Registration from "../Pages/Registration/Registration";
 
 
 
@@ -39,6 +40,10 @@ const routes = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login />
+            },
+            {
+                path: '/registration',
+                element: <Registration />
             }
         ]
     }

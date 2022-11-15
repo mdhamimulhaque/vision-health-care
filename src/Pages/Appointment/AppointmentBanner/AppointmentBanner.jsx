@@ -7,14 +7,14 @@ const AppointmentBanner = ({ selectedDate, setSelectedDate }) => {
     return (
         <section className='container mx-auto'>
             <div className=" overflow-hidden relative lg:flex lg:items-center">
-                <div className="w-full py-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-20">
+                <div className="w-full pb-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-20">
                     <h2 className="text-3xl font-bold tracking-wide text-gray-800 lg:text-5xl mb-2">
                         <span className="block">
                             Get Your appointment
                         </span>
                     </h2>
                     <p className="text-md mt-4 text-gray-400">
-                        Pick a Date and Show Spaces And Make Sure your Appointment
+                        Pick a Date and Show Available Spaces And Make Sure your Appointment
                     </p>
                     <div className="lg:mt-0 lg:flex-shrink-0 px-0">
                         <DayPicker
