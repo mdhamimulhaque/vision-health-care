@@ -8,6 +8,7 @@ import Reviews from "../Pages/Reviews/Reviews";
 import Appointment from "../Pages/Appointment/Appointment";
 import About from "../Pages/About/About";
 import Registration from "../Pages/Registration/Registration";
+import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
 
 
 
@@ -46,6 +47,11 @@ const routes = createBrowserRouter([
                 element: <Registration />
             }
         ]
+    },
+    {
+        path: 'dashboard',
+        element: <Dashboard />
+
     }
 ])
 
