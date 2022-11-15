@@ -9,6 +9,7 @@ import Appointment from "../Pages/Appointment/Appointment";
 import About from "../Pages/About/About";
 import Registration from "../Pages/Registration/Registration";
 import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 
 
@@ -50,7 +51,10 @@ const routes = createBrowserRouter([
     },
     {
         path: 'dashboard',
-        element: <Dashboard />
+        element:
+            <PrivateRoute>
+                <Dashboard />
+            </PrivateRoute>
 
     }
 ])

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
@@ -9,6 +9,7 @@ import { AuthContext } from '../../contexts/AuthProvider';
 const Registration = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateUser } = useContext(AuthContext);
+    const [regiError, setRegiError] = useState('')
 
 
     // ---> handle registration
@@ -20,7 +21,7 @@ const Registration = () => {
         createUser(email, password)
             .then(result => {
                 const user = result.user;
-
+                setRegiError('')
 
                 const userInfo = {
                     displayName: name
@@ -31,7 +32,10 @@ const Registration = () => {
                     .catch(err => console.error(err))
                 console.log("create user successfully")
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err);
+                setRegiError(err.message)
+            })
     }
 
 
@@ -76,6 +80,7 @@ const Registration = () => {
                                 })}
                             type="password" className="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-emerald-500 hover:shadow" placeholder="Enter your password" />
                         {errors.password && <p className='text-red-400' role="alert">{errors.password?.message}</p>}
+                        {regiError && <p className='text-red-400'>{regiError}</p>}
                     </label>
                     <button className="w-full py-3 font-medium text-white bg-emerald-400 hover:bg-emerald-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
