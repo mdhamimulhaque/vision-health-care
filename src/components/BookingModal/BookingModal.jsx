@@ -1,5 +1,6 @@
 import { format } from 'date-fns';
 import React, { useContext } from 'react';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const BookingModal = ({ handleModalClose, modalData, selectedDate, setModalData, refetch }) => {
@@ -36,7 +37,10 @@ const BookingModal = ({ handleModalClose, modalData, selectedDate, setModalData,
             .then(data => {
                 if (data.acknowledged) {
                     setModalData(null);
-                    refetch()
+                    refetch();
+                    toast.success('Booking successfully')
+                } else {
+                    toast.error(data.message)
                 }
             })
             .catch(err => {
