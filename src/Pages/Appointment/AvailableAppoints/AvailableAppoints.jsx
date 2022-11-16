@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import BookingModal from '../../../components/BookingModal/BookingModal';
@@ -5,14 +6,16 @@ import AppointmentCard from '../AppointmentCard/AppointmentCard';
 
 const AvailableAppoints = ({ selectedDate }) => {
 
-    const [appointmentData, setAppointmentData] = useState([]);
-    const [modalData, setModalData] = useState(null)
+    const [modalData, setModalData] = useState(null);
 
-    useEffect(() => {
-        fetch(`appointmentData.json`)
-            .then(res => res.json())
-            .then(data => setAppointmentData(data))
-    }, [])
+    const { data: appointmentData = [] } = useQuery({
+        queryKey: ['appointmentServices'],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/appointmentServices`)
+            const data = await res.json();
+            return data;
+        }
+    })
 
     //    ---> modal handle open
     const handleModalOpen = (e) => {
