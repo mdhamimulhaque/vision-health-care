@@ -1,17 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import BookingModal from '../../../components/BookingModal/BookingModal';
+import Loading from '../../../components/Loading/Loading';
 import AppointmentCard from '../AppointmentCard/AppointmentCard';
 
 const AvailableAppoints = ({ selectedDate }) => {
 
     const [modalData, setModalData] = useState(null);
 
-    const { data: appointmentData = [] } = useQuery({
-        queryKey: ['appointmentServices'],
+    const date = format(selectedDate, 'PP');
+
+    const { data: appointmentData = [], refetch, isLoading } = useQuery({
+        queryKey: ['appointmentServices', date],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/appointmentServices`)
+            const res = await fetch(`http://localhost:5000/appointmentServices?date=${date}`)
             const data = await res.json();
             return data;
         }
@@ -24,6 +27,10 @@ const AvailableAppoints = ({ selectedDate }) => {
     // ---> handle modal close
     const handleModalClose = () => {
         setModalData(null)
+    }
+    // ---> loader set
+    if (isLoading) {
+        return <Loading />
     }
 
     return (
@@ -54,6 +61,8 @@ const AvailableAppoints = ({ selectedDate }) => {
                         handleModalClose={handleModalClose}
                         modalData={modalData}
                         selectedDate={selectedDate}
+                        setModalData={setModalData}
+                        refetch={refetch}
                     />
                 }
 
