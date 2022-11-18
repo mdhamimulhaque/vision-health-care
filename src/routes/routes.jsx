@@ -10,6 +10,8 @@ import Registration from "../Pages/Registration/Registration";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import DashboardLayout from "../Layout/DashboardLayout";
 import MyAppointment from "../Pages/Dashboard/MyAppointment/MyAppointment";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import AdminRoute from "./AdminRoute/AdminRoute";
 
 
 
@@ -55,6 +57,13 @@ const routes = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <MyAppointment />
+            },
+            {
+                path: '/dashboard/allUsers',
+                element:
+                    <AdminRoute>
+                        <AllUsers />
+                    </AdminRoute>
             }
         ]
 
