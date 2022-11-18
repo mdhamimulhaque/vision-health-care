@@ -4,12 +4,12 @@ import ContactUs from "../Pages/ContactUs/ContactUs";
 import Error from "../Pages/Error/Error";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
-import Reviews from "../Pages/Reviews/Reviews";
 import Appointment from "../Pages/Appointment/Appointment";
 import About from "../Pages/About/About";
 import Registration from "../Pages/Registration/Registration";
-import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import DashboardLayout from "../Layout/DashboardLayout";
+import MyAppointment from "../Pages/Dashboard/MyAppointment/MyAppointment";
 
 
 
@@ -32,10 +32,6 @@ const routes = createBrowserRouter([
                 element: <Appointment />
             },
             {
-                path: '/reviews',
-                element: <Reviews />
-            },
-            {
                 path: '/contact',
                 element: <ContactUs />
             },
@@ -50,11 +46,17 @@ const routes = createBrowserRouter([
         ]
     },
     {
-        path: 'dashboard',
+        path: '/dashboard',
         element:
             <PrivateRoute>
-                <Dashboard />
-            </PrivateRoute>
+                <DashboardLayout />
+            </PrivateRoute>,
+        children: [
+            {
+                path: '/dashboard',
+                element: <MyAppointment />
+            }
+        ]
 
     }
 ])

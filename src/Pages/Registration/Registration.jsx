@@ -1,7 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../contexts/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 
 
@@ -10,7 +12,15 @@ const Registration = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateUser } = useContext(AuthContext);
     const [regiError, setRegiError] = useState('');
-    const navigate = useNavigate()
+    const [createdUserEmail, setCreatedEmail] = useState('')
+    const [token] = useToken(createdUserEmail)
+    const navigate = useNavigate();
+
+
+    // ---> navigate
+    if (token) {
+        navigate('/')
+    }
 
 
     // ---> handle registration
@@ -21,19 +31,17 @@ const Registration = () => {
         // ---> create user || registration
         createUser(email, password)
             .then(result => {
-                const user = result.user;
                 setRegiError('')
-
+                toast.success('registration successfully done')
                 const userInfo = {
                     displayName: name
                 }
                 // ---> update user
                 updateUser(userInfo)
                     .then(() => {
-                        navigate('/')
+                        saveUser(name, email)
                     })
                     .catch(err => console.error(err))
-                console.log("create user successfully")
             })
             .catch(err => {
                 console.log(err);
@@ -42,6 +50,22 @@ const Registration = () => {
     }
 
 
+    // ---> send user info to backend
+    const saveUser = (name, email) => {
+        const user = { name, email }
+        fetch(`http://localhost:5000/users`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                setCreatedEmail(email)
+            })
+            .catch(err => console.log(err))
+    }
 
 
 

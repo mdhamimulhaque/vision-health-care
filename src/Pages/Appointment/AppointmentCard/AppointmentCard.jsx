@@ -9,7 +9,7 @@ const AppointmentCard = ({ appointDta, handleModalOpen }) => {
             <div className="p-10 bg-white md:px-7 xl:px-10 rounded-[20px]bg-white shadow-md hover:shadow-lg mb-8">
                 <div className='flex flex-col md:flex-row lg:justify-between  md:gap-6 lg:gap-2 min-h-[150px]'>
                     <div className="doctor_info_box flex gap-2 sm:flex-col">
-                        <div className="w-[120px] h-[90px] bg-primary rounded-2xl"  >
+                        <div className="w-[120px] h-[90px] rounded-2xl"  >
                             <img src={img} alt="" className='object-cover' />
                         </div>
                         <div className="doctor_name_title_box">

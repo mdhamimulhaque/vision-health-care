@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import LOGO from "../../../img/logo.png";
 
@@ -23,13 +24,6 @@ const Header = () => {
         },
         {
             id: 4,
-            name: "Reviews",
-            path: '/reviews'
-        },
-
-
-        {
-            id: 5,
             name: "Contact Us",
             path: '/contact'
         },
@@ -43,7 +37,7 @@ const Header = () => {
     const handleLogout = () => {
         logOut()
             .then(result => {
-                console.log("logout successfully")
+                toast.success('login successfully')
             })
     }
     return (
@@ -51,8 +45,29 @@ const Header = () => {
             <div className="relative flex items-center justify-between">
                 <div className="flex items-center gap-4">
                     <div className="logo flex gap-2 items-center text-white">
+
+                        <label
+                            htmlFor="dashboard-drawer"
+                            className="p-2 -mr-1 lg:hidden transition duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-purple-50 focus:bg-deep-purple-50"
+                        >
+                            <svg className="w-5 text-gray-600" viewBox="0 0 24 24">
+                                <path
+                                    fill="currentColor"
+                                    d="M23,13H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,13,23,13z"
+                                />
+                                <path
+                                    fill="currentColor"
+                                    d="M23,6H1C0.4,6,0,5.6,0,5s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,6,23,6z"
+                                />
+                                <path
+                                    fill="currentColor"
+                                    d="M23,20H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,20,23,20z"
+                                />
+                            </svg>
+                        </label>
                         <img className='w-10' src={LOGO} alt="" />
-                        <span className='text-xl font-semibold '>Vision Health Center</span>
+                        <span className='text-xl font-semibold hidden md:block'>Vision Health Center</span>
+                        <span className='text-xl font-semibold  md:hidden'>Vision Health C.</span>
                     </div>
                     <ul className="flex items-center hidden space-x-8 lg:flex ml-4">
 
@@ -142,7 +157,7 @@ const Header = () => {
                                 <div className="flex items-center justify-between mb-4">
                                     <div className="logo flex items-center text-white">
                                         <img className='w-10' src={LOGO} alt="" />
-                                        <span className='ml-2 text-xl font-semibold '>Vision Health Center</span>
+                                        <span className='ml-2 text-xl font-semibold text-emerald-400'>Vision Health Center</span>
                                     </div>
                                     <div>
                                         <button

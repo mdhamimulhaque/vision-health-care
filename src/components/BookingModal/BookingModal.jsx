@@ -59,7 +59,7 @@ const BookingModal = ({ handleModalClose, modalData, selectedDate, setModalData,
                             <div className="doctor_info_box text-center">
                                 <h2 className='text-2xl lg:text-3xl font-semibold mb-4 text-emerald-400 px-2'>{serviceTitle}</h2>
                                 <div className='flex gap-1'>
-                                    <div className="w-[120px] h-[90px] bg-primary rounded-2xl mx-auto"  >
+                                    <div className="w-[120px] h-[90px] rounded-2xl mx-auto"  >
                                         <img src={img} alt="" className='object-cover' />
                                     </div>
                                     <div className="doctor_name_title_box">

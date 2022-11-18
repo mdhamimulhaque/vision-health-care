@@ -3,19 +3,26 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { loginUser, googleLogin } = useContext(AuthContext);
-    const [loginError, setLoginError] = useState('')
+    const [loginError, setLoginError] = useState('');
+    const [loginUserEmail, setLoginUserEmail] = useState('');
+    const [token] = useToken(loginUserEmail)
     const navigate = useNavigate();
     const location = useLocation();
 
     const from = location.state?.from?.pathname || "/";
 
     const googleProvider = new GoogleAuthProvider();
+
+    if (token) {
+        navigate(from, { replace: true })
+    }
 
     // ---> google login
     const handelGoogleLogin = () => {
@@ -32,10 +39,8 @@ const Login = () => {
         // ---> login user
         loginUser(email, password)
             .then(result => {
-                const user = result.user;
+                setLoginUserEmail(email)
                 setLoginError('');
-                navigate(from, { replace: true })
-                console.log('login Successfully');
             })
             .catch(err => {
                 console.error(err)
