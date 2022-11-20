@@ -44,31 +44,33 @@ const Header = () => {
         <div className="px-2 py-3 lg:px-5 z-50 bg-emerald-300 m-w-[2200px] mx-auto">
             <div className="relative flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                    <div className="logo flex gap-2 items-center text-white">
+                    <Link to='/'>
+                        <div className="logo flex gap-2 items-center text-white">
 
-                        <label
-                            htmlFor="dashboard-drawer"
-                            className="p-2 -mr-1 lg:hidden transition duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-purple-50 focus:bg-deep-purple-50"
-                        >
-                            <svg className="w-5 text-gray-600" viewBox="0 0 24 24">
-                                <path
-                                    fill="currentColor"
-                                    d="M23,13H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,13,23,13z"
-                                />
-                                <path
-                                    fill="currentColor"
-                                    d="M23,6H1C0.4,6,0,5.6,0,5s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,6,23,6z"
-                                />
-                                <path
-                                    fill="currentColor"
-                                    d="M23,20H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,20,23,20z"
-                                />
-                            </svg>
-                        </label>
-                        <img className='w-10' src={LOGO} alt="" />
-                        <span className='text-xl font-semibold hidden md:block'>Vision Health Center</span>
-                        <span className='text-xl font-semibold  md:hidden'>Vision Health C.</span>
-                    </div>
+                            <label
+                                htmlFor="dashboard-drawer"
+                                className="p-2 -mr-1 lg:hidden transition duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-purple-50 focus:bg-deep-purple-50"
+                            >
+                                <svg className="w-5 text-gray-600" viewBox="0 0 24 24">
+                                    <path
+                                        fill="currentColor"
+                                        d="M23,13H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,13,23,13z"
+                                    />
+                                    <path
+                                        fill="currentColor"
+                                        d="M23,6H1C0.4,6,0,5.6,0,5s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,6,23,6z"
+                                    />
+                                    <path
+                                        fill="currentColor"
+                                        d="M23,20H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,20,23,20z"
+                                    />
+                                </svg>
+                            </label>
+                            <img className='w-10' src={LOGO} alt="" />
+                            <span className='text-xl font-semibold hidden md:block'>Vision Health Center</span>
+                            <span className='text-xl font-semibold  md:hidden'>Vision Health C.</span>
+                        </div>
+                    </Link>
                     <ul className="flex items-center hidden space-x-8 lg:flex ml-4">
 
 

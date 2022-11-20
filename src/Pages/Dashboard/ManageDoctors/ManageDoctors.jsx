@@ -9,7 +9,9 @@ const ManageDoctors = () => {
         queryFn: async () => {
             try {
                 const res = await fetch(`http://localhost:5000/doctors`, {
-                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    }
                 });
                 const data = await res.json();
                 return data;
@@ -36,7 +38,10 @@ const ManageDoctors = () => {
             if (result.isConfirmed) {
                 // ---> delete user data
                 fetch(`http://localhost:5000/doctors/${id}`, {
-                    method: 'DELETE'
+                    method: 'DELETE',
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    }
                 })
                     .then(res => res.json())
                     .then(data => {
