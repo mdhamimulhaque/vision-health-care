@@ -1,10 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Loading from '../../../components/Loading/Loading';
 
 const AddDoctor = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate = useNavigate()
 
     const { data: specialties, isLoading } = useQuery({
         queryKey: ['appointmentSpecialty'],
@@ -22,7 +25,7 @@ const AddDoctor = () => {
         const formData = new FormData();
         formData.append('image', photo);
         const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imgHostKey}`;
-
+        // ---> get imgbb img url
         fetch(url, {
             method: 'POST',
             body: formData
@@ -36,7 +39,23 @@ const AddDoctor = () => {
                         specialty: data.specialty,
                         img: imgData.data.url
                     }
-                    console.log(doctorInfo)
+
+                    // ---> store info to database
+                    fetch(`http://localhost:5000/doctors`, {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json',
+                            authorization: `bearer ${localStorage.getItem('accessToken')}`
+                        },
+                        body: JSON.stringify(doctorInfo)
+                    })
+                        .then(res => res.json())
+                        .then(result => {
+                            if (result.acknowledged) {
+                                toast.success(`${data.name} entry successfully`);
+                                navigate('/dashboard/manage-doctors')
+                            }
+                        })
                 }
             })
             .catch(err => console.log(err))
