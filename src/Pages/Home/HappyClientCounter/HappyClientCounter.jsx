@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaMehRollingEyes, FaUsers, FaGlasses, FaHandHoldingHeart, FaBookMedical, FaGrinBeamSweat } from "react-icons/fa";
+import { FaMehRollingEyes, FaUsers, FaGlasses, FaHandHoldingHeart } from "react-icons/fa";
 
 const HappyClientCounter = () => {
     return (
