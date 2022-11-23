@@ -1,11 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
-import ContactUs from "../Pages/ContactUs/ContactUs";
 import Error from "../Pages/Error/Error";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import Appointment from "../Pages/Appointment/Appointment";
-import About from "../Pages/About/About";
 import Registration from "../Pages/Registration/Registration";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import DashboardLayout from "../Layout/DashboardLayout";
@@ -14,6 +12,8 @@ import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import AdminRoute from "./AdminRoute/AdminRoute";
 import AddDoctor from "../Pages/Dashboard/AddDoctor/AddDoctor";
 import ManageDoctors from "../Pages/Dashboard/ManageDoctors/ManageDoctors";
+import Payment from "../Pages/Dashboard/Payment/Payment";
+import ContactUs from "../Pages/ContactUs/ContactUs";
 
 
 
@@ -28,15 +28,11 @@ const routes = createBrowserRouter([
                 element: <Home />
             },
             {
-                path: '/about',
-                element: <About />
-            },
-            {
                 path: '/appointment',
                 element: <Appointment />
             },
             {
-                path: '/contact',
+                path: '/contactUs',
                 element: <ContactUs />
             },
             {
@@ -51,6 +47,7 @@ const routes = createBrowserRouter([
     },
     {
         path: '/dashboard',
+        errorElement: <Error />,
         element:
             <PrivateRoute>
                 <DashboardLayout />
@@ -80,6 +77,14 @@ const routes = createBrowserRouter([
                     <AdminRoute>
                         <ManageDoctors />
                     </AdminRoute>
+            },
+            {
+                path: '/dashboard/payment/:id',
+                element:
+                    <AdminRoute>
+                        <Payment />
+                    </AdminRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
             }
         ]
 

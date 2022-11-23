@@ -5,7 +5,9 @@ const VisionWorld = () => {
         <section className='container mx-auto '>
             <div className=" flex gap-4  flex-col px-6  lg:h-[32rem] lg:flex-row lg:items-center ">
                 <div className="flex items-center justify-center w-full h-96 lg:w-1/2">
-                    <img className="object-cover w-full h-full mx-auto rounded-md lg:max-w-2xl" src="https://img.freepik.com/free-photo/ophthalmologist-examining-woman-with-optometrist-trial-frame-female-patient-check-vision-ophthalmological-clinic_657921-169.jpg?w=1380&t=st=1668350428~exp=1668351028~hmac=c3d0194f71066a8b08f93093596870642701ed2ab28481c3afd262a7452046b1" alt="glasses photo" />
+                    <img className="object-cover w-full h-full mx-auto rounded-md lg:max-w-2xl"
+                        src="https://img.freepik.com/free-photo/ophthalmologist-examining-woman-with-optometrist-trial-frame-female-patient-check-vision-ophthalmological-clinic_657921-169.jpg?w=1380&t=st=1668350428~exp=1668351028~hmac=c3d0194f71066a8b08f93093596870642701ed2ab28481c3afd262a7452046b1"
+                        alt="img" />
                 </div>
                 <div className="w-full lg:w-1/2">
                     <div className="lg:max-w-lg">

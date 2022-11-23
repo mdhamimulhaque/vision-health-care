@@ -14,18 +14,13 @@ const Header = () => {
         },
         {
             id: 2,
-            name: "About",
-            path: '/about'
-        },
-        {
-            id: 3,
             name: "Appointment",
             path: '/appointment'
         },
         {
-            id: 4,
+            id: 3,
             name: "Contact Us",
-            path: '/contact'
+            path: '/contactUs'
         },
     ]
 

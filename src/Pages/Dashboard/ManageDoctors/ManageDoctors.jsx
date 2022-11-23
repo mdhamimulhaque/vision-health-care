@@ -121,7 +121,9 @@ const ManageDoctors = () => {
                                             </td>
                                             <td className="p-2 whitespace-nowrap text-center">
                                                 <button onClick={() => handleRemoveDoctor(doctor?._id)}
-                                                    className="rounded bg-red-400 hover:bg-red-500 text-white py-1 px-3 text-xs font-bold">Remove</button>
+                                                    className="rounded bg-red-400 hover:bg-red-500 text-white py-1 px-3 text-xs font-bold">
+                                                    Remove
+                                                </button>
                                             </td>
                                         </tr>)
                                     }

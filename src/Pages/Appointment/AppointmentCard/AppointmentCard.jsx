@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const AppointmentCard = ({ appointDta, handleModalOpen }) => {
-    const { serviceTitle, doctorName, doctorTitle, img, slots } = appointDta;
+    const { serviceTitle, doctorName, doctorTitle, img, slots, price } = appointDta;
 
     return (
         <div className="w-full lg:w-1/2 xl:w-1/3 px-4 ">
@@ -23,6 +23,7 @@ const AppointmentCard = ({ appointDta, handleModalOpen }) => {
                         </h4>
                         <p className="text-body-color">{slots.length > 0 ? slots[0] : "Try another day"}</p>
                         <p className="text-body-color">{slots.length} {slots.length > 1 ? "spaces" : "space"} Available</p>
+                        <div className='font-semibold my-1'>Price: ${price}</div>
                         <button
                             onClick={() => handleModalOpen(appointDta)}
                             disabled={slots.length === 0}

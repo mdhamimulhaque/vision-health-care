@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import Loading from '../../../components/Loading/Loading';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const MyAppointment = () => {
@@ -7,7 +9,7 @@ const MyAppointment = () => {
 
     const url = `http://localhost:5000/bookings?email=${user?.email}`;
 
-    const { data: bookings = [] } = useQuery({
+    const { data: bookings = [], isLoading } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
             const res = await fetch(url, {
@@ -19,6 +21,10 @@ const MyAppointment = () => {
             return data;
         }
     })
+
+    if (isLoading) {
+        return <Loading />
+    }
 
     return (
         <div>
@@ -32,17 +38,34 @@ const MyAppointment = () => {
                             <th>Treatment</th>
                             <th>Date</th>
                             <th>Time</th>
+                            <th>Payment</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            bookings.map((booking, index) =>
+                            bookings?.map((booking, index) =>
                                 <tr key={booking._id} className="hover">
                                     <th>{index + 1}</th>
                                     <td>{booking?.patient}</td>
                                     <td>{booking?.treatment}</td>
                                     <td>{booking?.appointmentDate}</td>
                                     <td>{booking?.slot}</td>
+                                    <td>
+                                        {
+                                            booking?.price && !booking?.paid &&
+                                            <Link to={`/dashboard/payment/${booking._id}`}>
+                                                <button
+                                                    className="rounded bg-emerald-400 hover:bg-emerald-500 text-white py-2 px-5 text-xs font-bold">
+                                                    Paid
+                                                </button>
+                                            </Link>
+                                        }
+
+                                        {
+                                            booking?.price && booking?.paid &&
+                                            <p className='text-emerald-400 '>Paid</p>
+                                        }
+                                    </td>
                                 </tr>
                             )
                         }
