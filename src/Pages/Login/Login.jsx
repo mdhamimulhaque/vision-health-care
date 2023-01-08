@@ -23,7 +23,7 @@ const Login = () => {
     if (token) {
         navigate(from, { replace: true })
     }
-
+    console.log(loginUserEmail)
     // ---> google login
     const handelGoogleLogin = () => {
         googleLogin(googleProvider)

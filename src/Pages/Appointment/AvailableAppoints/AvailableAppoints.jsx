@@ -14,7 +14,7 @@ const AvailableAppoints = ({ selectedDate }) => {
     const { data: appointmentData = [], refetch, isLoading } = useQuery({
         queryKey: ['appointmentServices', date],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/appointmentServices?date=${date}`)
+            const res = await fetch(`https://vision-health-server-mdhamimulhaque.vercel.app/appointmentServices?date=${date}`)
             const data = await res.json();
             return data;
         }

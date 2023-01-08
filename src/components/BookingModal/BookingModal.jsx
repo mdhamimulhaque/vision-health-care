@@ -26,7 +26,7 @@ const BookingModal = ({ handleModalClose, modalData, selectedDate, setModalData,
             price
         }
         // ---> insert booking data
-        fetch(`http://localhost:5000/bookings`, {
+        fetch(`https://vision-health-server-mdhamimulhaque.vercel.app/bookings`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

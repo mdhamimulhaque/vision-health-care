@@ -53,7 +53,7 @@ const Registration = () => {
     // ---> send user info to backend
     const saveUser = (name, email) => {
         const user = { name, email }
-        fetch(`http://localhost:5000/users`, {
+        fetch(`https://vision-health-server-mdhamimulhaque.vercel.app/users`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -98,10 +98,10 @@ const Registration = () => {
                                 {
                                     required: true,
                                     minLength: { value: 6, message: 'Password must be 6 character' },
-                                    // pattern: {
-                                    //     value: /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[a-zA-Z!#$%&? "])[a-zA-Z0-9!#$%&?]{6,20}$/,
-                                    //     message: "Password must be Uppercase,Number & Special character"
-                                    // }
+                                    pattern: {
+                                        // value: /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[a-zA-Z!#$%&? "])[a-zA-Z0-9!#$%&?]{6,20}$/,
+                                        message: "Password must be Uppercase,Number & Special character"
+                                    }
 
 
                                 })}

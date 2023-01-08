@@ -7,7 +7,7 @@ import { AuthContext } from '../../../contexts/AuthProvider';
 const MyAppointment = () => {
     const { user } = useContext(AuthContext);
 
-    const url = `http://localhost:5000/bookings?email=${user?.email}`;
+    const url = `https://vision-health-server-mdhamimulhaque.vercel.app/bookings?email=${user?.email}`;
 
     const { data: bookings = [], isLoading } = useQuery({
         queryKey: ['bookings', user?.email],
@@ -20,7 +20,9 @@ const MyAppointment = () => {
             const data = await res.json();
             return data;
         }
-    })
+    });
+
+    console.log(bookings)
 
     if (isLoading) {
         return <Loading />
@@ -42,7 +44,7 @@ const MyAppointment = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {
+                        {bookings.length > 1 &&
                             bookings?.map((booking, index) =>
                                 <tr key={booking._id} className="hover">
                                     <th>{index + 1}</th>

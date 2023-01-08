@@ -2,7 +2,9 @@ import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import useAdmin from '../../../hooks/useAdmin';
 import LOGO from "../../../img/logo.png";
+
 
 
 const Header = () => {
@@ -27,6 +29,7 @@ const Header = () => {
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { user, logOut } = useContext(AuthContext);
+    const [isAdmin] = useAdmin(user?.email);
 
 
     const handleLogout = () => {
@@ -66,7 +69,7 @@ const Header = () => {
                             <span className='text-xl font-semibold  md:hidden'>Vision Health C.</span>
                         </div>
                     </Link>
-                    <ul className="flex items-center hidden space-x-8 lg:flex ml-4">
+                    <ul className=" items-center hidden space-x-8 lg:flex ml-4">
 
 
                         {
@@ -89,7 +92,7 @@ const Header = () => {
                         }
                     </ul>
                 </div>
-                <ul className="flex items-center hidden space-x-3 lg:flex">
+                <ul className=" items-center hidden space-x-3 lg:flex">
                     {
                         user?.uid ?
                             <>

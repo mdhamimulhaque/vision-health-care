@@ -8,7 +8,7 @@ const ManageDoctors = () => {
         queryKey: ['doctors'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/doctors`, {
+                const res = await fetch(`https://vision-health-server-mdhamimulhaque.vercel.app/doctors`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -37,7 +37,7 @@ const ManageDoctors = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 // ---> delete user data
-                fetch(`http://localhost:5000/doctors/${id}`, {
+                fetch(`https://vision-health-server-mdhamimulhaque.vercel.app/doctors/${id}`, {
                     method: 'DELETE',
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`

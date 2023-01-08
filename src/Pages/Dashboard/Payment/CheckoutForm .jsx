@@ -14,7 +14,7 @@ const CheckoutForm = ({ booking }) => {
 
     // ---> stripe 
     useEffect(() => {
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://vision-health-server-mdhamimulhaque.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -83,7 +83,7 @@ const CheckoutForm = ({ booking }) => {
             };
 
             // ---> store payment data
-            fetch("http://localhost:5000/payments", {
+            fetch("https://vision-health-server-mdhamimulhaque.vercel.app/payments", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
